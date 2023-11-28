@@ -1,1 +1,0 @@
-export { AuthButtonServer as AuthButton } from './auth-button-server'
