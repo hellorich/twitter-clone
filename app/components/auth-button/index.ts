@@ -1,1 +1,1 @@
-export { AuthButton } from './auth-button'
+export { AuthButtonServer as AuthButton } from './auth-button-server'

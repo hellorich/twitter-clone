@@ -1,12 +1,15 @@
 'use client'
 
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { createClientComponentClient, Session } from '@supabase/auth-helpers-nextjs'
 import { useRouter } from 'next/navigation'
 
-export const AuthButton = () => {
+interface AuthButtonClientProps {
+  session: Session | null
+}
+
+export const AuthButtonClient = ({ session }: AuthButtonClientProps) => {
   const supabase = createClientComponentClient()
   const router = useRouter()
-
 
   const handleSignIn = async () => {
     await supabase.auth.signInWithOAuth({
@@ -22,10 +25,9 @@ export const AuthButton = () => {
     router.refresh()
   }
 
-  return (
-    <>
-      <button onClick={handleSignIn}>Login</button>
-      <button onClick={handleSignOut}>Logout</button>
-    </>
+  return session ? (
+    <button onClick={handleSignOut}>Logout</button>
+  ) : (
+    <button onClick={handleSignIn}>Login</button>
   )
 }
