@@ -8,7 +8,7 @@ interface AuthButtonClientProps {
 }
 
 export const AuthButtonClient = ({ session }: AuthButtonClientProps) => {
-  const supabase = createClientComponentClient()
+  const supabase = createClientComponentClient<Database>()
   const router = useRouter()
 
   const handleSignIn = async () => {
