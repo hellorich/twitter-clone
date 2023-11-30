@@ -13,7 +13,7 @@ export default async function Home() {
     redirect('/login')
   }
 
-  const { data: tweets } = await supabase.from('tweets').select('*, profiles(*)')
+  const { data: tweets } = await supabase.from('tweets').select('*, profiles(*), likes(*)')
   
   return (
     <>
@@ -23,7 +23,7 @@ export default async function Home() {
         <div key={tweet.id}>
           <p>{tweet?.profiles?.name} {tweet?.profiles?.username}</p>
           <p>{tweet.title}</p>
-          <Likes />
+          <Likes tweet={tweet} />
         </div>
         )
       )}
