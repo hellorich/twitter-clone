@@ -13,8 +13,14 @@ export default async function Home() {
     redirect('/login')
   }
 
-  const { data: tweets } = await supabase.from('tweets').select('*, profiles(*), likes(*)')
+  const { data  } = await supabase.from('tweets').select('*, profiles(*), likes(*)')
   
+  const tweets = data?.map(tweet => ({
+    ...tweet,
+    user_has_liked_tweet: !!tweet.likes.find(like => like.user_id === session.user.id),
+    likes: tweet.likes.length
+  })) ?? []
+
   return (
     <>
       <AuthButtonServer />
