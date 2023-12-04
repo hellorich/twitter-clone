@@ -41,15 +41,15 @@ export const Tweets = ({ tweets }: { tweets: TweetWithAuthor[] }) => {
         <Image
           alt=""
           className="rounded-full"
-          src={tweet.author.avatar_url}
-          height={48}
+          src={tweet.author.avatar_url.slice(1, -1)}
           width={48}
+          height={48}
         />
       </div>
       <div className="ml-4">
         <p>
-          <span className="font-bold">{tweet.author.name}</span>
-          <span className="text-sm ml">{tweet.author.username}</span>
+          <span className="font-bold">{tweet.author.name.slice(1, -1)}</span>
+          <span className="text-sm ml-2 text-gray-400">{tweet.author.username.slice(1, -1)}</span>
         </p>
         <p>{tweet.title}</p>
         <Likes tweet={tweet} addOptimisticTweet={addOptimisticTweet} />
