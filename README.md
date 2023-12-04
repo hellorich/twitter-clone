@@ -16,5 +16,5 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=
 
 ## Todo
 
-[ ] - Fix issue with Like synchronization and useOptimistic
-[ ] - Better fix for JSON data quotations
+[ ] Fix issue with Like synchronization and useOptimistic
+[ ] Better fix for JSON data quotations
