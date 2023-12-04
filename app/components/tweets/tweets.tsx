@@ -4,6 +4,7 @@ import { useEffect, useOptimistic } from 'react'
 import { Likes } from '../likes/likes'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 
 export const Tweets = ({ tweets }: { tweets: TweetWithAuthor[] }) => {
   const [optimisticTweets, addOptimisticTweet] = useOptimistic<TweetWithAuthor[],TweetWithAuthor>(
@@ -36,9 +37,23 @@ export const Tweets = ({ tweets }: { tweets: TweetWithAuthor[] }) => {
 
   return optimisticTweets.map(tweet => (
     <div key={tweet.id} className="border border-gray-800 border-t-0 px-4 py-8 flex">
-      <p>{tweet.author.name} {tweet.author.username}</p>
-      <p>{tweet.title}</p>
-      <Likes tweet={tweet} addOptimisticTweet={addOptimisticTweet} />
+      <div className="h-12 w-12">
+        <Image
+          alt=""
+          className="rounded-full"
+          src={tweet.author.avatar_url}
+          height={48}
+          width={48}
+        />
+      </div>
+      <div className="ml-4">
+        <p>
+          <span className="font-bold">{tweet.author.name}</span>
+          <span className="text-sm ml">{tweet.author.username}</span>
+        </p>
+        <p>{tweet.title}</p>
+        <Likes tweet={tweet} addOptimisticTweet={addOptimisticTweet} />
+      </div>
     </div>
     )
   )
