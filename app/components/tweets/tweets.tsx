@@ -35,7 +35,7 @@ export const Tweets = ({ tweets }: { tweets: TweetWithAuthor[] }) => {
   }, [supabase, router])
 
   return optimisticTweets.map(tweet => (
-    <div key={tweet.id}>
+    <div key={tweet.id} className="border border-gray-800 border-t-0 px-4 py-8 flex">
       <p>{tweet.author.name} {tweet.author.username}</p>
       <p>{tweet.title}</p>
       <Likes tweet={tweet} addOptimisticTweet={addOptimisticTweet} />
